@@ -1,0 +1,470 @@
+[
+    {
+        "id": "16ef2c9c56160c78",
+        "type": "tab",
+        "label": "Projet 4 : SenseHat",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "aa606b51946087f1",
+        "type": "mqtt in",
+        "z": "16ef2c9c56160c78",
+        "name": "",
+        "topic": "Texte",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "63f7ea585a3c9ef5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 740,
+        "wires": [
+            [
+                "210ccd0c3745edfd"
+            ]
+        ]
+    },
+    {
+        "id": "210ccd0c3745edfd",
+        "type": "rpi-sensehat out",
+        "z": "16ef2c9c56160c78",
+        "name": "",
+        "x": 570,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "4a5b7c7abbeebd3d",
+        "type": "comment",
+        "z": "16ef2c9c56160c78",
+        "name": "Capteurs d'environnement",
+        "info": "",
+        "x": 130,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "3c4f41fb6cfdadbe",
+        "type": "inject",
+        "z": "16ef2c9c56160c78",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 440,
+        "wires": [
+            [
+                "b3b8ae64ed59f4d6",
+                "6be9af8c36617ffd",
+                "8bb37c769ca81f0b"
+            ]
+        ]
+    },
+    {
+        "id": "b3b8ae64ed59f4d6",
+        "type": "exec",
+        "z": "16ef2c9c56160c78",
+        "command": "python ~/Desktop/projet4/temperature.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 440,
+        "y": 320,
+        "wires": [
+            [
+                "d55690bc9ee47af0"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "6be9af8c36617ffd",
+        "type": "exec",
+        "z": "16ef2c9c56160c78",
+        "command": "python ~/Desktop/projet4/humidite.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "78500abcfdf4b78a"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8bb37c769ca81f0b",
+        "type": "exec",
+        "z": "16ef2c9c56160c78",
+        "command": "python ~/Desktop/projet4/pression.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 430,
+        "y": 460,
+        "wires": [
+            [
+                "47f5f00718d0a4a0"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e5cb9e991f96094a",
+        "type": "rpi-sensehat in",
+        "z": "16ef2c9c56160c78",
+        "name": "",
+        "motion": true,
+        "env": false,
+        "stick": false,
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "df24ee7632e65d84"
+            ]
+        ]
+    },
+    {
+        "id": "df24ee7632e65d84",
+        "type": "switch",
+        "z": "16ef2c9c56160c78",
+        "name": "stick",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "motion",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 140,
+        "wires": [
+            [
+                "89608ffc1a6d9414",
+                "18824a09031feb81",
+                "4a6f17d0ad6e5143",
+                "b14fe586f2c6d7b0"
+            ]
+        ]
+    },
+    {
+        "id": "89608ffc1a6d9414",
+        "type": "change",
+        "z": "16ef2c9c56160c78",
+        "name": "acceleration",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.acceleration",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 434,
+        "y": 79,
+        "wires": [
+            [
+                "43035c820929d5a1"
+            ]
+        ]
+    },
+    {
+        "id": "18824a09031feb81",
+        "type": "change",
+        "z": "16ef2c9c56160c78",
+        "name": "gyroscope",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.gyroscope",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 434,
+        "y": 119,
+        "wires": [
+            [
+                "c1d0e5ff3a881ef6"
+            ]
+        ]
+    },
+    {
+        "id": "4a6f17d0ad6e5143",
+        "type": "change",
+        "z": "16ef2c9c56160c78",
+        "name": "orientation",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.orientation",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 434,
+        "y": 159,
+        "wires": [
+            [
+                "f028af6650ef38b1"
+            ]
+        ]
+    },
+    {
+        "id": "b14fe586f2c6d7b0",
+        "type": "change",
+        "z": "16ef2c9c56160c78",
+        "name": "compass",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.compass",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 424,
+        "y": 199,
+        "wires": [
+            [
+                "35a0a92d6a215265"
+            ]
+        ]
+    },
+    {
+        "id": "9fcdf9ad34914b9d",
+        "type": "comment",
+        "z": "16ef2c9c56160c78",
+        "name": "Capteurs de mouvement",
+        "info": "",
+        "x": 200,
+        "y": 85,
+        "wires": []
+    },
+    {
+        "id": "43035c820929d5a1",
+        "type": "mqtt out",
+        "z": "16ef2c9c56160c78",
+        "name": "",
+        "topic": "Acceleration",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "63f7ea585a3c9ef5",
+        "x": 720,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "c1d0e5ff3a881ef6",
+        "type": "mqtt out",
+        "z": "16ef2c9c56160c78",
+        "name": "",
+        "topic": "Gyroscope",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "63f7ea585a3c9ef5",
+        "x": 680,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f028af6650ef38b1",
+        "type": "mqtt out",
+        "z": "16ef2c9c56160c78",
+        "name": "",
+        "topic": "Orientation",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "63f7ea585a3c9ef5",
+        "x": 670,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "35a0a92d6a215265",
+        "type": "mqtt out",
+        "z": "16ef2c9c56160c78",
+        "name": "",
+        "topic": "Compas",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "63f7ea585a3c9ef5",
+        "x": 660,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d55690bc9ee47af0",
+        "type": "mqtt out",
+        "z": "16ef2c9c56160c78",
+        "name": "",
+        "topic": "Temperature",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "63f7ea585a3c9ef5",
+        "x": 740,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "47f5f00718d0a4a0",
+        "type": "mqtt out",
+        "z": "16ef2c9c56160c78",
+        "name": "",
+        "topic": "Pression",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "63f7ea585a3c9ef5",
+        "x": 740,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "78500abcfdf4b78a",
+        "type": "mqtt out",
+        "z": "16ef2c9c56160c78",
+        "name": "",
+        "topic": "Humidite",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "63f7ea585a3c9ef5",
+        "x": 780,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "f8016f6fd2fbf09b",
+        "type": "comment",
+        "z": "16ef2c9c56160c78",
+        "name": "Recevoir du texte ",
+        "info": "",
+        "x": 190,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "63f7ea585a3c9ef5",
+        "type": "mqtt-broker",
+        "name": "localhost(Raphaël)",
+        "broker": "localhost",
+        "port": "16384",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]

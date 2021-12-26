@@ -1,0 +1,606 @@
+[
+    {
+        "id": "d6e7c8ceef137e6a",
+        "type": "tab",
+        "label": "Sense hat",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f51c664.1c4ff98",
+        "type": "ui_gauge",
+        "z": "d6e7c8ceef137e6a",
+        "name": "Thermometer",
+        "group": "f9412ecc.e353b",
+        "order": 2,
+        "width": 6,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Thermométre",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 500,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "6da57f94.3deb2",
+        "type": "ui_gauge",
+        "z": "d6e7c8ceef137e6a",
+        "name": "Hygrometer",
+        "group": "f9412ecc.e353b",
+        "order": 1,
+        "width": 6,
+        "height": 3,
+        "gtype": "wave",
+        "title": "Hygrométre",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 490,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c24d86d8.1920a8",
+        "type": "ui_gauge",
+        "z": "d6e7c8ceef137e6a",
+        "name": "Barometer",
+        "group": "f9412ecc.e353b",
+        "order": 3,
+        "width": 6,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Barométre",
+        "label": "mbar",
+        "format": "{{value}}",
+        "min": "900",
+        "max": "1100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 490,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "10fe0e9f.a28511",
+        "type": "ui_chart",
+        "z": "d6e7c8ceef137e6a",
+        "name": "Temperature Graph",
+        "group": "398715c2.3c77ea",
+        "order": 2,
+        "width": 8,
+        "height": 4,
+        "label": "Température",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#f17509",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 510,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "934a4512972c09f7",
+        "type": "mqtt in",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "topic": "Temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a7cffa477e0911bb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "f51c664.1c4ff98",
+                "10fe0e9f.a28511"
+            ]
+        ]
+    },
+    {
+        "id": "8c22713e1b356279",
+        "type": "mqtt in",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "topic": "Humidite",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a7cffa477e0911bb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 200,
+        "wires": [
+            [
+                "6da57f94.3deb2",
+                "c57f22b2e4f6dbd3"
+            ]
+        ]
+    },
+    {
+        "id": "7b86cc0990b2a62b",
+        "type": "mqtt in",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "topic": "Pression",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a7cffa477e0911bb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 280,
+        "wires": [
+            [
+                "c24d86d8.1920a8"
+            ]
+        ]
+    },
+    {
+        "id": "c57f22b2e4f6dbd3",
+        "type": "ui_chart",
+        "z": "d6e7c8ceef137e6a",
+        "name": "Humidité Graph",
+        "group": "398715c2.3c77ea",
+        "order": 1,
+        "width": 8,
+        "height": 4,
+        "label": "Humidité",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 500,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3290289a996baad8",
+        "type": "mqtt out",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "topic": "Texte",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "a7cffa477e0911bb",
+        "x": 710,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "de24aa46b70a565c",
+        "type": "ui_form",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "label": "Texte",
+        "group": "ca50f9c75cb346d9",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "options": [
+            {
+                "label": "écris pour afficher",
+                "value": "texte",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "texte": ""
+        },
+        "payload": "",
+        "submit": "envoyer",
+        "cancel": "fermer",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 370,
+        "y": 640,
+        "wires": [
+            [
+                "f816812f3999a50a"
+            ]
+        ]
+    },
+    {
+        "id": "a82c4e3555c83cd5",
+        "type": "inject",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 640,
+        "wires": [
+            [
+                "de24aa46b70a565c"
+            ]
+        ]
+    },
+    {
+        "id": "f816812f3999a50a",
+        "type": "function",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "func": "msg.payload = msg.payload.texte;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 640,
+        "wires": [
+            [
+                "3290289a996baad8"
+            ]
+        ]
+    },
+    {
+        "id": "6cd46a4cd5320e1c",
+        "type": "ui_text",
+        "z": "d6e7c8ceef137e6a",
+        "group": "fe62d403cb1b4e85",
+        "order": 1,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "acceleration:",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 470,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "576a2fe3bacfa093",
+        "type": "ui_text",
+        "z": "d6e7c8ceef137e6a",
+        "group": "fe62d403cb1b4e85",
+        "order": 3,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "gyroscope:",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 470,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "60b02936debf8e8c",
+        "type": "ui_text",
+        "z": "d6e7c8ceef137e6a",
+        "group": "fe62d403cb1b4e85",
+        "order": 4,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "orientation:",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 470,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "201bab15c6dfea7d",
+        "type": "mqtt in",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "topic": "Acceleration",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a7cffa477e0911bb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 360,
+        "wires": [
+            [
+                "6cd46a4cd5320e1c"
+            ]
+        ]
+    },
+    {
+        "id": "d6a719d6ee1732a2",
+        "type": "mqtt in",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "topic": "Gyroscope",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a7cffa477e0911bb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 420,
+        "wires": [
+            [
+                "576a2fe3bacfa093"
+            ]
+        ]
+    },
+    {
+        "id": "47647fb39171f7e2",
+        "type": "mqtt in",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "topic": "Orientation",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a7cffa477e0911bb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 480,
+        "wires": [
+            [
+                "60b02936debf8e8c"
+            ]
+        ]
+    },
+    {
+        "id": "badde49696fefbdd",
+        "type": "mqtt in",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "topic": "Compas",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a7cffa477e0911bb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 540,
+        "wires": [
+            [
+                "722bc00db0fd14f0"
+            ]
+        ]
+    },
+    {
+        "id": "722bc00db0fd14f0",
+        "type": "ui_gauge",
+        "z": "d6e7c8ceef137e6a",
+        "name": "",
+        "group": "fe62d403cb1b4e85",
+        "order": 2,
+        "width": 8,
+        "height": 5,
+        "gtype": "compass",
+        "title": "Boussole",
+        "label": "°",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 460,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "340c339cbbfedec5",
+        "type": "ui_spacer",
+        "z": "d6e7c8ceef137e6a",
+        "name": "spacer",
+        "group": "fe62d403cb1b4e85",
+        "order": 5,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "2b5d93b3c1db5b23",
+        "type": "ui_spacer",
+        "z": "d6e7c8ceef137e6a",
+        "name": "spacer",
+        "group": "fe62d403cb1b4e85",
+        "order": 6,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "f9412ecc.e353b",
+        "type": "ui_group",
+        "name": "Environnement ",
+        "tab": "55925672.3514d8",
+        "order": 1,
+        "disp": true,
+        "width": "18",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "398715c2.3c77ea",
+        "type": "ui_group",
+        "name": "Evolution au cours du temps",
+        "tab": "55925672.3514d8",
+        "order": 2,
+        "disp": true,
+        "width": 16,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a7cffa477e0911bb",
+        "type": "mqtt-broker",
+        "name": "RP_Raphael",
+        "broker": "91.167.188.67",
+        "port": "16384",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "ca50f9c75cb346d9",
+        "type": "ui_group",
+        "name": "Matrice de l'autre RP",
+        "tab": "55925672.3514d8",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fe62d403cb1b4e85",
+        "type": "ui_group",
+        "name": "Motion",
+        "tab": "55925672.3514d8",
+        "order": 3,
+        "disp": true,
+        "width": 16,
+        "collapse": false
+    },
+    {
+        "id": "55925672.3514d8",
+        "type": "ui_tab",
+        "name": "SenseHAT",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
