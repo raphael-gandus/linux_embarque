@@ -2,6 +2,8 @@
 
 ##Partie 1 : création d'un microlinux pour Raspberry Pi 3b avec Buildroot
 
+https://drive.google.com/drive/folders/11rCmgKJLSwS2XtPB7mQSHDyHXBX1_gZ8?usp=sharing
+
 ###1) Préparation de l'environnement de travail
 On commence par créer un répertoire de travail qu'on appelle Development-tools/
 '''bash
