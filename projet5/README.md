@@ -98,3 +98,33 @@ Lorsqu'on éxecute ce script, on rentre bien dans l'invite de commande d'une Ras
 
 ### Partie 2 : création d'une application BLE avec Node Red
 
+Le fichier applicationBLE.json contient l'application développée sur Node Red. 
+
+J'utilise le module node-red-contrib-generic-ble pour obtenir les nodes nécessaires.
+
+J'utilise mon téléphone (iPhone) qui va simuler un capteur BLE grâce à l'application LightBlue.
+
+Lorsque l'iphone et la Raspberry sont appairés via Bluetooth, le node "Generic BLE in" liste tous les services disponibles ainsi que leur UUID.
+
+J'ai choisi de tester 2 services : 
+- UUID 2a2b : ce service donne la date de l'iPhone
+- UUID 2a19 : ce service donne le niveau de batterie de l'iPhone
+
+On utilise donc 3 timestamp en entrée du BLE in :
+- Un timestamp avec topic "connect" pour activer la connection entre l'iPhone et la Raspberry
+- Un timestamp avec topic "2a2b"
+- Un timestamp avec topic "2a19"
+
+J'utilise ensuite des fonctions pour traiter les données et pour pouvoir les afficher sur l'UI.
+
+Voici le résultat obtenu : 
+![ui.jpg](./ui.jpg)
+
+Mon téléphone avait bien 73% de batterie à ce moment-là, et on était le samedi 29 janvier 2022.
+
+
+
+
+
+
+
