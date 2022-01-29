@@ -100,6 +100,8 @@ Lorsqu'on éxecute ce script, on rentre bien dans l'invite de commande d'une Ras
 
 Le fichier applicationBLE.json contient l'application développée sur Node Red. 
 
+![appliBLE.jpg](./appliBLE.jpg)
+
 J'utilise le module node-red-contrib-generic-ble pour obtenir les nodes nécessaires.
 
 J'utilise mon téléphone (iPhone) qui va simuler un capteur BLE grâce à l'application LightBlue.
@@ -121,7 +123,7 @@ Voici le résultat obtenu :
 
 ![ui.jpg](./ui.jpg)
 
-Mon téléphone avait bien 73% de batterie à ce moment-là, et on était le samedi 29 janvier 2022.
+Mon téléphone avait bien 74% de batterie à ce moment-là, et on était le samedi 29 janvier 2022.
 
 
 
