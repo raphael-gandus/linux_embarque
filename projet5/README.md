@@ -118,6 +118,7 @@ On utilise donc 3 timestamp en entrée du BLE in :
 J'utilise ensuite des fonctions pour traiter les données et pour pouvoir les afficher sur l'UI.
 
 Voici le résultat obtenu : 
+
 ![ui.jpg](./ui.jpg)
 
 Mon téléphone avait bien 73% de batterie à ce moment-là, et on était le samedi 29 janvier 2022.
