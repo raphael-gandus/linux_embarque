@@ -2,7 +2,6 @@
 
 ## Partie 1 : création d'un microlinux pour Raspberry Pi 3b avec Buildroot
 
-https://drive.google.com/drive/folders/11rCmgKJLSwS2XtPB7mQSHDyHXBX1_gZ8?usp=sharing
 
 ### 1) Préparation de l'environnement de travail
 
@@ -29,6 +28,8 @@ On se place dans le repertoire rpi3_64_qemu. On souhaite génerer un microlinux 
 ```bash
 make raspberrypi3_64_defconfig
 ```
+
+
 ### 2)Personalisation du microlinux
 
 Pour acceder au menu de configuration, on éxecute la commande : 
@@ -61,6 +62,11 @@ make
 Après une longue compilation, on obtient dans le fichier output/images les fichiers suivant :
 
 ![4.jpg](./4.jpg)
+
+Vous pouvez retrouver le contenu de ce fichier images sur le Google Drive suivant : 
+https://drive.google.com/drive/folders/11rCmgKJLSwS2XtPB7mQSHDyHXBX1_gZ8?usp=sharing
+
+
 
 ### 3)Test du microlinux avec QEMU et émulation d'une RaspberryPi 3b
 
