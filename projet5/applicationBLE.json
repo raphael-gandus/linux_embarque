@@ -1,0 +1,412 @@
+[
+    {
+        "id": "66749981239bdb55",
+        "type": "tab",
+        "label": "BLE_projet5",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "253bb14c833f91e2",
+        "type": "Generic BLE in",
+        "z": "66749981239bdb55",
+        "name": "",
+        "genericBle": "a85d2d438080a8d8",
+        "useString": false,
+        "notification": true,
+        "x": 450,
+        "y": 200,
+        "wires": [
+            [
+                "c935b7bc846685a0",
+                "52162d2379ab5b34",
+                "38c4cde2d2d94e34"
+            ]
+        ]
+    },
+    {
+        "id": "64e1cef652b8c9c3",
+        "type": "inject",
+        "z": "66749981239bdb55",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "connect",
+        "payloadType": "date",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "253bb14c833f91e2"
+            ]
+        ]
+    },
+    {
+        "id": "c935b7bc846685a0",
+        "type": "debug",
+        "z": "66749981239bdb55",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d41b76730e7e0db0",
+        "type": "inject",
+        "z": "66749981239bdb55",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "2a2b",
+        "payloadType": "date",
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "253bb14c833f91e2"
+            ]
+        ]
+    },
+    {
+        "id": "215a3b369b310ce0",
+        "type": "comment",
+        "z": "66749981239bdb55",
+        "name": "Envoi de la requête connect pour se connecter à l'iPhone",
+        "info": "",
+        "x": 230,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "b4b77be2917d54a8",
+        "type": "comment",
+        "z": "66749981239bdb55",
+        "name": "Envoi de la requête contenant l'UUID du service fournissant la date de l'iPhone",
+        "info": "",
+        "x": 270,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "52162d2379ab5b34",
+        "type": "function",
+        "z": "66749981239bdb55",
+        "name": "",
+        "func": "if(msg.payload.characteristics[\"2a2b\"])\n{\nmsg.payload = msg.payload.characteristics[\"2a2b\"];\nvar jds = [\"Lundi\", \"Mardi\", \"Mercredi\", \"Jeudi\", \"Vendredi\", \"Samedi\", \"Dimanche\"];\nvar jour_ = jds[msg.payload[7]-1];\n\nvar mda = [\"Jan\",\"Fév\",\"Mar\",\"Avr\",\"Mai\",\"Juin\",\"Juil\",\"Août\",\"Sept\",\"Oct\",\"Nov\",\"Déc\"]\nvar mois_ = mda[msg.payload[2]-1];\n\nvar annee_ = msg.payload[1] << 8;// + msg.payload[0];\nannee_ += msg.payload[0];\n//\n\n//msg.payload = annee_;\n\n/*msg.payload = {\n    jour : jour_,\n    nb : msg.payload[3],\n    mois : mois_,\n    annee : annee_\n};*/\n\nmsg.payload = String(jour_) +\" \"+String(msg.payload[3])+\" \"+String(mois_)+\" \"+String(annee_);\nreturn msg;\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 240,
+        "wires": [
+            [
+                "ae12c20e7facccb7",
+                "c935b7bc846685a0"
+            ]
+        ]
+    },
+    {
+        "id": "ae12c20e7facccb7",
+        "type": "ui_text",
+        "z": "66749981239bdb55",
+        "group": "d183aadbf3c827d0",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Date",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 910,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "8a64a9e98c0ec125",
+        "type": "inject",
+        "z": "66749981239bdb55",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "2a19",
+        "payloadType": "date",
+        "x": 270,
+        "y": 540,
+        "wires": [
+            [
+                "253bb14c833f91e2"
+            ]
+        ]
+    },
+    {
+        "id": "6c930e39bc48aa3c",
+        "type": "ui_gauge",
+        "z": "66749981239bdb55",
+        "name": "",
+        "group": "d183aadbf3c827d0",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Batterie",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#b30000",
+            "#e6e600",
+            "#65cb3a"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 850,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "38c4cde2d2d94e34",
+        "type": "function",
+        "z": "66749981239bdb55",
+        "name": "",
+        "func": "if(msg.payload.characteristics[\"2a19\"])\n{\nmsg.payload = String(msg.payload.characteristics[\"2a19\"][0]);\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 340,
+        "wires": [
+            [
+                "6c930e39bc48aa3c",
+                "530ebc944e74bb8a"
+            ]
+        ]
+    },
+    {
+        "id": "aa3c91140e9be121",
+        "type": "comment",
+        "z": "66749981239bdb55",
+        "name": "Envoi de la requête contenant l'UUID du service fournissant l'état de la batterie de l'iPhone",
+        "info": "",
+        "x": 310,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "530ebc944e74bb8a",
+        "type": "debug",
+        "z": "66749981239bdb55",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "a85d2d438080a8d8",
+        "type": "Generic BLE",
+        "localName": "iPhone de Raphaël",
+        "address": "98:60:ca:95:76:49",
+        "uuid": "9860ca957649",
+        "characteristics": [
+            {
+                "uuid": "2a05",
+                "name": "Service Changed",
+                "type": "org.bluetooth.characteristic.gatt.service_changed",
+                "notifiable": false,
+                "readable": false,
+                "writable": false,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "2a0f",
+                "name": "Local Time Information",
+                "type": "org.bluetooth.characteristic.local_time_information",
+                "notifiable": false,
+                "readable": true,
+                "writable": false,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "2a2b",
+                "name": "Current Time",
+                "type": "org.bluetooth.characteristic.current_time",
+                "notifiable": true,
+                "readable": true,
+                "writable": false,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "2a24",
+                "name": "Model Number String",
+                "type": "org.bluetooth.characteristic.model_number_string",
+                "notifiable": false,
+                "readable": true,
+                "writable": false,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "2a29",
+                "name": "Manufacturer Name String",
+                "type": "org.bluetooth.characteristic.manufacturer_name_string",
+                "notifiable": false,
+                "readable": true,
+                "writable": false,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "2a19",
+                "name": "Battery Level",
+                "type": "org.bluetooth.characteristic.battery_level",
+                "notifiable": true,
+                "readable": true,
+                "writable": false,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "22eac6e924d64bb5be44b36ace7c7bfb",
+                "name": "<Unnamed>",
+                "type": "(Custom Type)",
+                "notifiable": true,
+                "readable": false,
+                "writable": false,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "9fbf120d630142d98c5825e699a21dbd",
+                "name": "<Unnamed>",
+                "type": "(Custom Type)",
+                "notifiable": true,
+                "readable": false,
+                "writable": false,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "69d1d8f345e149a898219bbdfdaad9d9",
+                "name": "<Unnamed>",
+                "type": "(Custom Type)",
+                "notifiable": false,
+                "readable": false,
+                "writable": true,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "c6b2f38c23ab46d8a6aba3a870bbd5d7",
+                "name": "<Unnamed>",
+                "type": "(Custom Type)",
+                "notifiable": false,
+                "readable": true,
+                "writable": true,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "2f7cabce808d411f9a0cbb92ba96c102",
+                "name": "<Unnamed>",
+                "type": "(Custom Type)",
+                "notifiable": true,
+                "readable": false,
+                "writable": true,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "9b3c81d857b14a8ab8df0e56f7ca51c2",
+                "name": "<Unnamed>",
+                "type": "(Custom Type)",
+                "notifiable": true,
+                "readable": false,
+                "writable": true,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "af0badb15b9943cd917aa77bc549e3cc",
+                "name": "<Unnamed>",
+                "type": "(Custom Type)",
+                "notifiable": true,
+                "readable": false,
+                "writable": true,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "8667556c9a374c9184ed54ee27d90049",
+                "name": "<Unnamed>",
+                "type": "(Custom Type)",
+                "notifiable": true,
+                "readable": false,
+                "writable": true,
+                "writeWithoutResponse": false
+            }
+        ]
+    },
+    {
+        "id": "d183aadbf3c827d0",
+        "type": "ui_group",
+        "name": "Phone information",
+        "tab": "1bb96557ec4d4c78",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1bb96557ec4d4c78",
+        "type": "ui_tab",
+        "name": "BLE",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
