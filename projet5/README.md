@@ -78,7 +78,7 @@ qemu-system-aarch64 -M raspi3 -m 1024 \
                     -kernel output/images/Image \
                     -dtb output/images/bcm2710-rpi-3-b.dtb \
                     -drive file=output/images/sdcard.img,format=raw \
-                    -append "console=ttyAMA0 root=/dev/mmcblk0p2 rw panic=1 rootwait rootfstype=>
+                    -append "console=ttyAMA0 root=/dev/mmcblk0p2 rw panic=1 rootwait rootfstype \
                     -net nic -net user \
                     -nographic
 ```
