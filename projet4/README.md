@@ -75,4 +75,4 @@ allow_anonymous true
 qui permet à MQTT d'utiliser le port 16384 (celui utilisé par la box du réseau dans lequel se trouve la RP1).
 
 ## Apercu du dashboard sur la RP2 : 
-(./dashboard_RP2.jpg)
+![dashboard_RP2](./dashboard_RP2.jpg)
