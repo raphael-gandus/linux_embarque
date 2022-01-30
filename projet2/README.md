@@ -49,7 +49,9 @@ systemctl reload apache2
 ```
 Afin d'accéder à ce site depuis un ordinateur de mon réseau local, il faut que j'ajoute manuellement dans le fichier hosts de Windows qui se trouve
 dans Windows/System32/drivers/etc la ligne :
-						192.168.0.254 www.mon_site.test  
-						#IP locale de ma raspberry
+```bash
+192.168.0.254                 www.mon_site.test  
+#IP locale de ma raspberry
+```
 
 Une fois cette opération effectuée, je peux accéder à mon CV en écrivant http://www.mon_site.test dans la barre de recherche du navigateur.
